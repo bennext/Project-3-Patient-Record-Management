@@ -1,4 +1,7 @@
+# Benjamin Guth 
+
 from binary_search_tree import *
+import csv
 
 class PatientRecord: 
 
@@ -30,12 +33,42 @@ class PatientRecordManagementSystem :
         
     def display_all_records(self): #Displays all patient records in the BST using inorder traversal.
         #need to build that command first on the bst
-        pass
+        
+        my_inorder_list = self.patient_record_management_BST.inorder_traversal()
+
+        for a_p in my_inorder_list:
+            print (a_p)
+
+        return my_inorder_list
+        
     def build_tree_from_csv(self, file_path): #Reads patient data from a CSV file and populates the BST.
         #need to do the file reading stuff 
-        pass
+        # reading the cvs file
+        with open(file_path, 'r') as csv_file:
+            csv_reader = csv.reader(csv_file)
+
+            next(csv_reader)
+            # PatientID,Name,Age,Diagnosis,BloodPressure,Pulse,BodyTemperature
+            # consider adding a check here rather than just a line skip
+
+            # one line at a time create a patientrecord
+            for line in csv_reader:
+                #print(line)
+                #current_patient = PatientRecord(line)
+                self.add_patient_record(line[0], line[1], line[2], line[3], line[4], line[5], line[6])
+                # 10,Professor X,29,Pneumonia,130/85,75,37.3
+                # might need to split this up for this to work
+                #add the patient to the tree
+                
+        return True
+        
+
     def visualize_tree(self): #Visualizes the BST using Graphviz.
         # need to do the vs code plug in stuff 
         pass
     def _add_nodes(self, dot, node): #A helper method that recursively adds nodes and edges to the Graphviz object.
         pass
+
+
+# file_path 
+# "data/patient_records.csv"

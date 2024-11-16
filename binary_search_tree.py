@@ -116,8 +116,67 @@ class BinarySearchTree:
     #The following files you will have to create and add to BinarySearchTree class:
 
     def inorder_traversal(self, node):
-        pass
+
+        self.list_of = []
+
+        if node is None:
+            return
+
+        # First recur on left subtree
+        self.inorder_traversal(node.left)
+
+        # Now deal with the node
+        #print(node.data, end=' ')
+        self.list_of.append(node.value)
+
+        # Then recur on right subtree
+        self.inorder_traversal(node.right)    
+
+        return self.list_of
+
+    # Function to print inorder traversal
+    def printInorder(self, node):
+        if node is None:
+            return
+
+        # First recur on left subtree
+        self.printInorder(node.left)
+
+        # Now deal with the node
+        print(node.data, end=' ')
+
+        # Then recur on right subtree
+        self.printInorder(node.right)    
+
+
     def preorder_traversal(self, node):
-        pass
+        self.list_of = []
+
+        if node is None:
+            return
+        
+        self.list_of.append(node.value)
+
+        # First recur on left subtree
+        self.preorder_traversal(node.left)
+
+        # Then recur on right subtree
+        self.preorder_traversal(node.right)    
+
+        return self.list_of
+        
     def postorder_traversal(self, node):
-        pass
+        self.list_of = []
+
+        if node is None:
+            return
+        
+        # First recur on left subtree
+        self.postorder_traversal(node.left)
+
+        # Then recur on right subtree
+        self.postorder_traversal(node.right)   
+        
+        self.list_of.append(node.value) 
+
+        return self.list_of
