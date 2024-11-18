@@ -115,9 +115,80 @@ class BinarySearchTree:
     
     #The following files you will have to create and add to BinarySearchTree class:
 
-    def inorder_traversal(self, node):
-        pass
-    def preorder_traversal(self, node):
-        pass
-    def postorder_traversal(self, node):
-        pass
+    def inorder_traversal(self):
+
+        self.list_of = []
+
+        def inner_recur(node):
+
+            if node is None:
+                return
+
+            # First recur on left subtree
+            inner_recur(node.left)
+
+            # Now deal with the node
+            #print(node.data, end=' ')
+            self.list_of.append(node.value)
+
+            # Then recur on right subtree
+            inner_recur(node.right)    
+
+        inner_recur(self.root)
+
+        return self.list_of
+
+    # Function to print inorder traversal
+    def printInorder(self, node):
+        if node is None:
+            return
+
+        # First recur on left subtree
+        self.printInorder(node.left)
+
+        # Now deal with the node
+        print(node.data, end=' ')
+
+        # Then recur on right subtree
+        self.printInorder(node.right)    
+
+
+    def preorder_traversal(self):
+        self.list_of = []
+
+        def inner_recur(node):
+
+            if node is None:
+                return
+            
+            self.list_of.append(node.value)
+
+            # First recur on left subtree
+            self.inner_recur(node.left)
+
+            # Then recur on right subtree
+            self.inner_recur(node.right)    
+
+        inner_recur(self.root)
+
+        return self.list_of
+        
+    def postorder_traversal(self):
+        self.list_of = []
+
+        def inner_recur(node):
+
+            if node is None:
+                return
+            
+            # First recur on left subtree
+            self.inner_recur(node.left)
+
+            # Then recur on right subtree
+            self.inner_recur(node.right)   
+            
+            self.list_of.append(node.value) 
+
+        inner_recur(self.root)
+
+        return self.list_of
